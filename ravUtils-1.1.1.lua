@@ -31,14 +31,9 @@ end
 -- @param {table} optionsTable
 -- @param {string} key
 -- @param {any} default
-function ns:SetOptionDefaults(optionsTable, key, default)
+function ns:SetOptionDefault(optionsTable, key, default)
     if optionsTable[ns.prefix .. key] == nil then
-        if optionsTable[key] ~= nil then
-            optionsTable[ns.prefix .. key] = optionsTable[key]
-            optionsTable[key] = nil
-        else
-            optionsTable[ns.prefix .. key] = default
-        end
+        optionsTable[ns.prefix .. key] = default
     end
 end
 
