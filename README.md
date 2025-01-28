@@ -1,3 +1,3 @@
 # Ravenous Utilities
 
-Functions used throughout projects.
+A library of utility functions for WoW Addons.

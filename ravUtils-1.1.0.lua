@@ -12,7 +12,7 @@ end
 -- @return {number|boolean}
 function ns:Contains(table, value)
     for index, check in ipairs(table) do
-        if check == value then
+        if value == check then
             return index
         end
     end
@@ -31,7 +31,7 @@ end
 -- @param {table} optionsTable
 -- @param {string} key
 -- @param {any} default
-function ns:RegisterDefaultOption(optionsTable, key, default)
+function ns:SetOptionDefaults(optionsTable, key, default)
     if optionsTable[ns.prefix .. key] == nil then
         if optionsTable[key] ~= nil then
             optionsTable[ns.prefix .. key] = optionsTable[key]
@@ -39,6 +39,19 @@ function ns:RegisterDefaultOption(optionsTable, key, default)
         else
             optionsTable[ns.prefix .. key] = default
         end
+    end
+end
+
+--- Toggles a feature with a specified timeout
+-- @param {table} toggles
+-- @param {string} toggle
+-- @param {number} timeout
+function ns:Toggle(toggle, timeout)
+    if not ns.data.toggles[toggle] then
+        ns.data.toggles[toggle] = true
+        CT.After(math.max(timeout, 0), function()
+            ns.data.toggles[toggle] = false
+        end)
     end
 end
 
