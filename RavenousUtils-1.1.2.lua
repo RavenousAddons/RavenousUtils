@@ -65,22 +65,3 @@ function ns:OpenSettings()
     PlaySound(SOUNDKIT.IG_MAINMENU_OPEN)
     Settings.OpenToCategory(ns.Settings:GetID())
 end
-
---- Returns a number of runs to expect a drop based on its percentage drop
---- chance and optionally a reasonable percentage to expect it by and a bound to
---- limit the loop by
--- @param {number} chance
--- @param {number} [reasonable]
--- @param {number} [bound]
--- @return {number}
-function ns:RunsUntilDrop(chance, reasonable, bound)
-    reasonable = reasonable and math.max(1, math.min(99, reasonable)) or 95
-    bound = bound and bound or 10000
-    for runs = 1, bound do
-        local percentage = 1 - ((1 - chance / 100) ^ runs)
-        if percentage > (reasonable / 100) then
-            return runs
-        end
-    end
-    return bound
-end
