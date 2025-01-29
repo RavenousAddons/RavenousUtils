@@ -44,7 +44,7 @@ end
 function ns:Toggle(toggle, timeout)
     if not ns.data.toggles[toggle] then
         ns.data.toggles[toggle] = true
-        CT.After(math.max(timeout, 0), function()
+        C_Timer.After(math.max(timeout, 0), function()
             ns.data.toggles[toggle] = false
         end)
     end
