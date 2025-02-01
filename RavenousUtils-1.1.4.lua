@@ -26,7 +26,7 @@ end
 -- @param {number} timeout
 function ns:Toggle(toggle, timeout)
     if not ns.data.toggles[toggle] then
-        ns.data.toggles[toggle] = true
+        ns.data.toggles[toggle] = GetServerTime() + math.max(timeout, 0)
         C_Timer.After(math.max(timeout, 0), function()
             ns.data.toggles[toggle] = false
         end)
