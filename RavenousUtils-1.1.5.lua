@@ -55,8 +55,8 @@ end
 -- @param {table} optionsTable
 -- @param {number} id
 -- @param {string} [key]
-function ns:PlaySound(optionsTable, id, key)
+function ns:PlaySound(optionsTable, id, channel, key)
     if ns:OptionValue(optionsTable, key ~= nil and key or "sound") then
-        PlaySoundFile(id)
+        PlaySoundFile(id, channel ~= nil and channel or "SFX")
     end
 end
